@@ -1,0 +1,145 @@
+:root {
+  --primary: #2ecc71; /* Verde sustentável */
+  --dark: #2c3e50;
+  --light: #f4f4f4;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: var(--dark);
+  color: var(--white);
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+nav button {
+  background-color: var(--primary);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+nav button:hover {
+  opacity: 0.9;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+  display: none; /* Esconde todas por padrão */
+  animation: fadeIn 0.5s;
+}
+
+section.active {
+  display: block; /* Mostra a ativa */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Garante que padding não estoure a largura */
+}
+
+.checkbox-group label {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+.checkbox-group input {
+  width: auto;
+}
+
+button[type='submit'],
+button {
+  background-color: var(--dark);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Estilos do Dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.card {
+  background: var(--light);
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 5px solid var(--primary);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: var(--dark);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Estilos do Histórico */
+.historico-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

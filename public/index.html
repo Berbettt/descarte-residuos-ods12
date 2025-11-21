@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão de Resíduos - ODS 12</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Sistema de Gestão de Resíduos (ODS 12)</h1>
+      <nav>
+        <button onclick="showSection('section-pontos')">Cadastrar Ponto</button>
+        <button onclick="showSection('section-descarte')">
+          Registrar Descarte
+        </button>
+        <button onclick="showSection('section-historico')">Histórico</button>
+        <button onclick="showSection('section-relatorio')">
+          Relatório Gerencial
+        </button>
+      </nav>
+    </header>
+
+    <main id="content">
+      <section id="section-pontos" class="active">
+        <h2>Cadastrar Novo Ponto de Descarte</h2>
+        <form onsubmit="cadastrarPonto(event)">
+          <div class="form-group">
+            <label>Nome do Local:</label>
+            <input type="text" id="ponto-nome" required />
+          </div>
+          <div class="form-group">
+            <label>Bairro:</label>
+            <input type="text" id="ponto-bairro" required />
+          </div>
+          <div class="form-group">
+            <label>Tipo de Local:</label>
+            <select id="ponto-tipo">
+              <option value="public">Público</option>
+              <option value="private">Privado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Geolocalização:</label>
+            <input
+              type="number"
+              id="ponto-lat"
+              placeholder="Latitude (ex: -23.55)"
+              step="any"
+              required
+            />
+            <input
+              type="number"
+              id="ponto-lng"
+              placeholder="Longitude (ex: -46.63)"
+              step="any"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Categorias Aceitas:</label>
+            <div class="checkbox-group">
+              <label
+                ><input type="checkbox" value="Papel" name="cat" /> Papel</label
+              >
+              <label
+                ><input type="checkbox" value="Plástico" name="cat" />
+                Plástico</label
+              >
+              <label
+                ><input type="checkbox" value="Vidro" name="cat" /> Vidro</label
+              >
+              <label
+                ><input type="checkbox" value="Metal" name="cat" /> Metal</label
+              >
+              <label
+                ><input type="checkbox" value="Eletrônico" name="cat" />
+                Eletrônico</label
+              >
+              <label
+                ><input type="checkbox" value="Orgânico" name="cat" />
+                Orgânico</label
+              >
+            </div>
+          </div>
+          <button type="submit">Salvar Ponto</button>
+        </form>
+      </section>
+
+      <section id="section-descarte" style="display: none">
+        <h2>Registrar Descarte de Usuário</h2>
+        <form onsubmit="registrarDescarte(event)">
+          <div class="form-group">
+            <label>Nome do Usuário:</label>
+            <input type="text" id="descarte-usuario" required />
+          </div>
+          <div class="form-group">
+            <label>Ponto de Descarte:</label>
+            <select id="descarte-ponto-select" required>
+              <option value="">Carregando pontos...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tipo de Resíduo:</label>
+            <select id="descarte-tipo">
+              <option value="plastic">Plástico</option>
+              <option value="paper">Papel</option>
+              <option value="organic">Orgânico</option>
+              <option value="electronic">Eletrônico</option>
+              <option value="glass">Vidro</option>
+              <option value="other">Outro</option>
+            </select>
+          </div>
+          <button type="submit">Registrar Descarte</button>
+        </form>
+      </section>
+
+      <section id="section-historico" style="display: none">
+        <h2>Histórico de Descartes</h2>
+        <div class="filters">
+          <input
+            type="text"
+            id="filtro-usuario"
+            placeholder="Filtrar por Usuário"
+          />
+          <select id="filtro-tipo">
+            <option value="">Todos os Tipos</option>
+            <option value="plastic">Plástico</option>
+            <option value="paper">Papel</option>
+            <option value="organic">Orgânico</option>
+            <option value="electronic">Eletrônico</option>
+            <option value="glass">Vidro</option>
+          </select>
+          <button onclick="carregarHistorico()">Filtrar</button>
+        </div>
+        <div id="historico-lista"></div>
+      </section>
+
+      <section id="section-relatorio" style="display: none">
+        <h2>Relatório Gerencial (Dashboard)</h2>
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3>Total Usuários</h3>
+            <p id="dash-users">0</p>
+          </div>
+          <div class="card">
+            <h3>Total Pontos</h3>
+            <p id="dash-points">0</p>
+          </div>
+          <div class="card">
+            <h3>Média Diária (30d)</h3>
+            <p id="dash-avg">0</p>
+          </div>
+          <div class="card">
+            <h3>Resíduo + Comum</h3>
+            <p id="dash-top-waste">-</p>
+          </div>
+          <div class="card full-width">
+            <h3>Top Ponto de Descarte</h3>
+            <p id="dash-top-point">-</p>
+          </div>
+          <div class="card full-width">
+            <h3>Crescimento Mensal</h3>
+            <p id="dash-growth">0%</p>
+          </div>
+        </div>
+        <button onclick="carregarRelatorio()" style="margin-top: 20px">
+          Atualizar Dados
+        </button>
+      </section>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
